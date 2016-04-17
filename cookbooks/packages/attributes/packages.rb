@@ -7,3 +7,4 @@
 # Examples below:
 
 #default[:packages] = [{:name => "app-misc/wkhtmltopdf-bin", :version => "0.10.0_beta5"}]
+default[:packages] = []
