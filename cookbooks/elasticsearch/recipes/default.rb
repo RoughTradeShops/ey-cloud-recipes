@@ -21,7 +21,7 @@ if ['util'].include?(node[:instance_role])
   if node['name'].include?("elasticsearch_")
     Chef::Log.info "Downloading Elasticsearch v#{node[:elasticsearch_version]} checksum #{node[:elasticsearch_checksum]}"
     remote_file "/tmp/elasticsearch-#{node[:elasticsearch_version]}.zip" do
-      source "http://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-#{node[:elasticsearch_version]}.zip"
+      source "http://download.elastic.co/elasticsearch/release/org/elasticsearch/distribution/zip/elasticsearch/2.3.5/elasticsearch-{node[:elasticsearch_version]}.zip"
       mode "0644"
       checksum node[:elasticsearch_checksum]
       not_if { File.exists?("/tmp/elasticsearch-#{node[:elasticsearch_version]}.zip") }
@@ -181,7 +181,7 @@ if ['solo','app_master','app','util'].include?(node[:instance_role])
         source "es.yml.erb"
         backup 0
         variables(:yaml_file => {
-          node.engineyard.environment.framework_env => { 
+          node.engineyard.environment.framework_env => {
           :hosts => elasticsearch_hosts} })
       end
     end
